@@ -23,8 +23,8 @@ export default function SearchPopupNav({
         onChange={searchCallback}
       />
       <div className="hidden md:flex justify-center items-center space-x-4">
-        <Link href="/add-home" className="text-sm font-semibold">
-          Add you home
+        <Link href="/add-item" className="text-sm font-semibold">
+          Add you item
         </Link>
 
         <NavMenu session={session.data?.session} />

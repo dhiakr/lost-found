@@ -1,4 +1,4 @@
-import AddHomeForm from "@/components/AddHomeForm";
+import AddItemForm from "@/components/AddItemForm";
 import Navbar from "@/components/base/Navbar";
 import Counter from "@/components/common/Counter";
 import { generateRandomNumber } from "@/lib/utils";
@@ -6,7 +6,7 @@ import { generateRandomNumber } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 
-export default function AddHome() {
+export default function AddItem() {
   return (
     <div>
       <Navbar />
@@ -24,23 +24,23 @@ export default function AddHome() {
 
             <div className="hidden md:grid grid-cols-2 gap-2 mt-5">
               <Image
-                src="/images/home_img.jpeg"
+                src="/images/item_img.jpeg"
                 width={200}
                 height={200}
-                alt="home"
+                alt="item"
                 className="rounded-2xl object-cover"
               />
               <Image
-                src="/images/home_img1.jpeg"
+                src="/images/item_img1.jpeg"
                 width={205}
                 height={205}
-                alt="home"
+                alt="item"
                 className="rounded-2xl object-cover"
               />
             </div>
           </div>
           <div className="">
-            <AddHomeForm />
+            <AddItemForm />
           </div>
         </div>
       </div>

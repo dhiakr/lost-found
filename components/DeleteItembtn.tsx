@@ -17,13 +17,13 @@ import Env from "@/config/Env";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 
-export default function DeleteHomebtn({ id }: { id: number }) {
+export default function DeleteItembtn({ id }: { id: number }) {
   const router = useRouter();
   const supabaseClient = createClientComponentClient();
 
-  const deleteHome = async () => {
+  const deleteItem = async () => {
     // * Delete the post
-    await supabaseClient.from("homes").delete().eq("id", id);
+    await supabaseClient.from("items").delete().eq("id", id);
 
     router.refresh();
   };
@@ -39,12 +39,12 @@ export default function DeleteHomebtn({ id }: { id: number }) {
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your
-            added home and remove your data from our servers.
+            added item and remove your data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={deleteHome}>Continue</AlertDialogAction>
+          <AlertDialogAction onClick={deleteItem}>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

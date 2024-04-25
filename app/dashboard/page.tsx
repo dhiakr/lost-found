@@ -13,15 +13,15 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 import { getImageUrl } from "@/lib/utils";
-import DeleteHomebtn from "@/components/DeleteHomebtn";
+import DeleteItembtn from "@/components/DeleteItembtn";
 import Link from "next/link";
 import { Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 export default async function Dashboard() {
   const serverSupabase = createServerComponentClient({ cookies });
   const { data: user } = await serverSupabase.auth.getUser();
-  const { data: homes } = await serverSupabase
-    .from("homes")
+  const { data: items } = await serverSupabase
+    .from("items")
     .select("id ,image ,title ,country ,city ,price ,created_at")
     .eq("user_id", user.user?.id);
   return (
@@ -29,9 +29,9 @@ export default async function Dashboard() {
       <Navbar />
       <Toast />
       <div className="container mt-5">
-        {homes && homes.length > 0 && (
+        {items && items.length > 0 && (
           <Table>
-            <TableCaption>Your added Airbnb Homes.</TableCaption>
+            <TableCaption>Your added Airbnb Items.</TableCaption>
             <TableHeader>
               <TableRow>
                 <TableHead>Country</TableHead>
@@ -43,7 +43,7 @@ export default async function Dashboard() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {homes.map((item) => (
+              {items.map((item) => (
                 <TableRow key={item.id}>
                   <TableCell>{item.country}</TableCell>
                   <TableCell>{item.city}</TableCell>
@@ -53,15 +53,15 @@ export default async function Dashboard() {
                       src={getImageUrl(item.image)}
                       width={40}
                       height={40}
-                      alt="Home_img"
+                      alt="Item_img"
                       className="rounded-full w-10 h-10"
                     />
                   </TableCell>
                   <TableCell>{item.price}</TableCell>
                   <TableCell>
                     <div className="flex items-center space-x-2">
-                      <DeleteHomebtn id={item.id} />
-                      <Link href={`/home/${item.id}`}>
+                      <DeleteItembtn id={item.id} />
+                      <Link href={`/item/${item.id}`}>
                         <Button size="icon" className="bg-green-400">
                           <Eye />
                         </Button>
@@ -74,9 +74,9 @@ export default async function Dashboard() {
           </Table>
         )}
 
-        {homes && homes.length < 1 && (
+        {items && items.length < 1 && (
           <h1 className="text-center font-bold text-xl">
-            No Home found. Please add your home
+            No Item found. Please add your item
           </h1>
         )}
       </div>

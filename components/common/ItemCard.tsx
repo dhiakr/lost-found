@@ -3,23 +3,23 @@ import Image from "next/image";
 import { getImageUrl } from "@/lib/utils";
 import Link from "next/link";
 
-export default function HomeCard({ home }: { home: any }) {
+export default function ItemCard({ item }: { item: any }) {
   return (
-    <Link href={`/home/${home.id}`}>
+    <Link href={`/item/${item.id}`}>
       <div className="text-start">
         <Image
-          src={getImageUrl(home.image)}
+          src={getImageUrl(item.image)}
           width={100}
           height={100}
-          alt={home.title}
+          alt={item.title}
           className="w-full h-[300px] rounded-xl object-cover object-center"
           unoptimized
         />
         <p className="font-semibold">
-          {home.city}, {home.country}
+          {item.city}, {item.country}
         </p>
-        <p>{home.title}</p>
-        <p>{home.price}</p>
+        <p>{item.title}</p>
+        <p>{item.price}</p>
       </div>
     </Link>
   );

@@ -14,16 +14,16 @@ import Env from "@/config/Env";
 import { generateRandomNumber } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { HomeSchemaType, homeSchema } from "@/validation/homeSchema";
+import { ItemSchemaType, itemSchema } from "@/validation/itemSchema";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-export default function AddHomeForm() {
+export default function AddItemForm() {
   const supabase = createClientComponentClient();
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
   const [image, setImage] = useState<File | null>(null);
-  const [homeCategories, setHomeCategories] = useState<Array<string> | []>([]);
+  const [itemCategories, setItemCategories] = useState<Array<string> | []>([]);
   const [description, setDescription] = useState("");
 
   const {
@@ -31,8 +31,8 @@ export default function AddHomeForm() {
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm<HomeSchemaType>({
-    resolver: yupResolver(homeSchema),
+  } = useForm<ItemSchemaType>({
+    resolver: yupResolver(itemSchema),
   });
 
   const handleImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,11 +44,11 @@ export default function AddHomeForm() {
   };
 
   useEffect(() => {
-    setValue("categories", homeCategories);
+    setValue("categories", itemCategories);
     setValue("description", description);
-  }, [homeCategories, description]);
+  }, [itemCategories, description, setValue]);
 
-  const submit = async (payload: HomeSchemaType) => {
+  const submit = async (payload: ItemSchemaType) => {
     setLoading(true);
     const user = await supabase.auth.getUser();
     const uniquePath = Date.now() + "_" + generateRandomNumber();
@@ -61,8 +61,8 @@ export default function AddHomeForm() {
       return;
     }
 
-    // * Store home
-    const { error: homeErr } = await supabase.from("homes").insert({
+    // * Store item
+    const { error: itemErr } = await supabase.from("items").insert({
       user_id: user.data.user?.id,
       country: payload.country,
       state: payload.state,
@@ -70,17 +70,17 @@ export default function AddHomeForm() {
       title: payload.title,
       price: payload.price,
       description: payload.description,
-      categories: homeCategories,
+      categories: itemCategories,
       image: imgData?.path,
     });
 
-    if (homeErr) {
-      toast.error(homeErr.message, { theme: "colored" });
+    if (itemErr) {
+      toast.error(itemErr.message, { theme: "colored" });
       setLoading(false);
       return;
     }
 
-    router.push("/dashboard?success=Home added successfully!");
+    router.push("/dashboard?success=Item added successfully!");
   };
   return (
     <form onSubmit={handleSubmit(submit)} className="mb-5">
@@ -177,18 +177,18 @@ export default function AddHomeForm() {
             <div className="items-top flex space-x-2" key={item.name}>
               <input
                 type="checkbox"
-                checked={(homeCategories as string[]).includes(item.name)}
+                checked={(itemCategories as string[]).includes(item.name)}
                 id={item.name}
                 value={item.name}
                 className="bg-red-100 border-red-300 text-red-500 focus:ring-red-200"
                 onChange={(event) => {
                   if (event.target.checked) {
-                    setHomeCategories([...homeCategories, item.name]);
+                    setItemCategories([...itemCategories, item.name]);
                   } else {
-                    const filterCategories = homeCategories.filter(
+                    const filterCategories = itemCategories.filter(
                       (item) => item !== event.target.value
                     );
-                    setHomeCategories(filterCategories);
+                    setItemCategories(filterCategories);
                   }
                 }}
               />
