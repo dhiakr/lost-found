@@ -22,7 +22,7 @@ export default async function Dashboard() {
   const { data: user } = await serverSupabase.auth.getUser();
   const { data: items } = await serverSupabase
     .from("items")
-    .select("id ,image ,title ,country ,city ,price ,created_at")
+    .select("id ,image ,title ,country ,city ,status ,created_at")
     .eq("user_id", user.user?.id);
   return (
     <div>
@@ -38,7 +38,7 @@ export default async function Dashboard() {
                 <TableHead>City</TableHead>
                 <TableHead>Title</TableHead>
                 <TableHead>Image</TableHead>
-                <TableHead>Price</TableHead>
+                <TableHead>Status</TableHead>
                 <TableHead>Action</TableHead>
               </TableRow>
             </TableHeader>
@@ -57,7 +57,7 @@ export default async function Dashboard() {
                       className="rounded-full w-10 h-10"
                     />
                   </TableCell>
-                  <TableCell>{item.price}</TableCell>
+                  <TableCell>{item.status}</TableCell>
                   <TableCell>
                     <div className="flex items-center space-x-2">
                       <DeleteItembtn id={item.id} />

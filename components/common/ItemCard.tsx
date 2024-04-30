@@ -19,7 +19,7 @@ export default function ItemCard({ item }: { item: any }) {
           {item.city}, {item.country}
         </p>
         <p>{item.title}</p>
-        <p>{item.price}</p>
+        <p>{item.status}</p>
       </div>
     </Link>
   );
