@@ -53,7 +53,7 @@ export default function SocialAuth() {
       </Button>
       <Button variant="outline" className="w-full mb-2" onClick={facebookLogin}>
         <Image
-          src="/images/github.png"
+          src="/images/facebook.png"
           width={25}
           height={25}
           alt="google"

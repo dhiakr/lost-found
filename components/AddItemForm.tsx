@@ -1,4 +1,4 @@
-"use client";
+"use server";
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -25,6 +25,7 @@ export default function AddItemForm() {
   const [image, setImage] = useState<File | null>(null);
   const [itemCategories, setItemCategories] = useState<Array<string> | []>([]);
   const [description, setDescription] = useState("");
+  const [status, setStatus] = useState("lost");
 
   const {
     register,
@@ -46,7 +47,8 @@ export default function AddItemForm() {
   useEffect(() => {
     setValue("categories", itemCategories);
     setValue("description", description);
-  }, [itemCategories, description, setValue]);
+
+  }, [itemCategories, description, status, setValue]);
 
   const submit = async (payload: ItemSchemaType) => {
     setLoading(true);
@@ -68,7 +70,7 @@ export default function AddItemForm() {
       state: payload.state,
       city: payload.city,
       title: payload.title,
-      price: payload.price,
+      status: payload.status,
       description: payload.description,
       categories: itemCategories,
       image: imgData?.path,
@@ -129,17 +131,26 @@ export default function AddItemForm() {
             {errors?.city?.message}
           </span>
         </div>
-        <div className="mt-5">
-          <Label htmlFor="price">Price</Label>
-          <Input
-            placeholder="Enter price"
-            type="number"
-            id="price"
-            {...register("price")}
-          />
-          <span className="text-red-500 font-bold">
-            {errors?.price?.message}
-          </span>
+        <div className="mt-5 flex items-center">
+          <Label htmlFor="status" className="mr-2">
+            Status
+          </Label>
+          <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+            <input
+              type="checkbox"
+              id="status"
+              {...register("status")}
+              onChange={(e) => {
+                setStatus(e.target.checked ? "found" : "lost");
+              }}
+              className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+            />
+            <label
+              htmlFor="status"
+              className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
+            ></label>
+          </div>
+          <span className="text-gray-700">Lost</span>
         </div>
         <div className="mt-5">
           <Label htmlFor="image">Image</Label>
