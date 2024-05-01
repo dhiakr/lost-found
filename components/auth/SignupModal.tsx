@@ -38,6 +38,7 @@ export default function SignupModal() {
       options: {
         data: {
           name: payload.name,
+          phoneNumber: payload.phoneNumber,
         },
       },
     });
@@ -98,6 +99,16 @@ export default function SignupModal() {
                     <span className="text-red-400">
                       {errors.email?.message}
                     </span>
+                  </div>
+                  <div className="mt-5">
+                    <Label htmlFor="name">Phone Number</Label>
+                    <Input
+                      placeholder="Enter your phone number"
+                      type="number"
+                      id="PhoneNumber"
+                      {...register("phoneNumber")}
+                    />
+                    <span className="text-red-400">{errors.name?.message}</span>
                   </div>
                   <div className="mt-5">
                     <Label htmlFor="password">Password</Label>
