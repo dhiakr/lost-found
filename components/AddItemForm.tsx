@@ -1,4 +1,4 @@
-"use server";
+"use client";
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -17,6 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ItemSchemaType, itemSchema } from "@/validation/itemSchema";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { Textarea } from "./ui/textarea";
 
 export default function AddItemForm() {
   const supabase = createClientComponentClient();
@@ -47,10 +48,10 @@ export default function AddItemForm() {
   useEffect(() => {
     setValue("categories", itemCategories);
     setValue("description", description);
-
   }, [itemCategories, description, status, setValue]);
 
   const submit = async (payload: ItemSchemaType) => {
+
     setLoading(true);
     const user = await supabase.auth.getUser();
     const uniquePath = Date.now() + "_" + generateRandomNumber();
@@ -60,6 +61,7 @@ export default function AddItemForm() {
     if (imgErr) {
       toast.error(imgErr.message, { theme: "colored" });
       setLoading(false);
+
       return;
     }
 
@@ -79,9 +81,10 @@ export default function AddItemForm() {
     if (itemErr) {
       toast.error(itemErr.message, { theme: "colored" });
       setLoading(false);
+ 
       return;
     }
-
+console.log("payload");
     router.push("/dashboard?success=Item added successfully!");
   };
   return (
@@ -132,26 +135,40 @@ export default function AddItemForm() {
           </span>
         </div>
         <div className="mt-5 flex items-center">
-          <Label htmlFor="status" className="mr-2">
-            Status
-          </Label>
-          <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+          <span className="text-gray-700 mr-2">Status:</span>
+          <div className="flex items-center">
             <input
-              type="checkbox"
-              id="status"
+              type="radio"
+              id="status-found"
               {...register("status")}
-              onChange={(e) => {
-                setStatus(e.target.checked ? "found" : "lost");
-              }}
-              className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+              value="found"
+              checked={status === "found"}
+              onChange={() => setStatus("found")}
+              className="mr-2 appearance-none bg-gray-300 border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-green-600 checked:border-transparent focus:outline-none"
             />
             <label
-              htmlFor="status"
-              className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
-            ></label>
+              htmlFor="status-found"
+              className="text-sm mr-4 cursor-pointer"
+            >
+              Found
+            </label>
           </div>
-          <span className="text-gray-700">Lost</span>
+          <div className="flex items-center">
+            <input
+              type="radio"
+              id="status-lost"
+              {...register("status")}
+              value="lost"
+              checked={status === "lost"}
+              onChange={() => setStatus("lost")}
+              className="mr-2 appearance-none bg-gray-300 border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-brand checked:border-transparent focus:outline-none"
+            />
+            <label htmlFor="status-lost" className="text-sm cursor-pointer">
+              Lost
+            </label>
+          </div>
         </div>
+
         <div className="mt-5">
           <Label htmlFor="image">Image</Label>
           <Input
@@ -167,16 +184,11 @@ export default function AddItemForm() {
       </div>
       <div className="mt-5">
         <Label htmlFor="description">Description</Label>
-        {/* <Textarea
+        <Textarea
           placeholder="Write your description here.."
           id="description"
           {...register("description")}
-        ></Textarea> */}
-        <ReactQuill
-          theme="snow"
-          value={description}
-          onChange={setDescription}
-        />
+        ></Textarea>
         <span className="text-red-500 font-bold">
           {errors?.description?.message}
         </span>

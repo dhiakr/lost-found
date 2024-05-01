@@ -8,7 +8,7 @@ export const itemSchema = yup
         country: yup.string().required(),
         state: yup.string().required(),
         city: yup.string().required(),
-        status: yup.number().required().typeError('Amount should be number'),
+        status: yup.string().required(),
         description: yup.string().min(10).max(20000).required(),
         categories: yup
             .mixed<Array<string> | []>()
