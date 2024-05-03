@@ -40,7 +40,7 @@ export default async function Item({
 
       {items && items?.length < 1 && (
         <div className="text-center mt-4">
-          <h1 className="text-brand font-bold text-2xl">No Airbnb found!</h1>
+          <h1 className="text-brand font-bold text-2xl">No item found!</h1>
         </div>
       )}
     </div>

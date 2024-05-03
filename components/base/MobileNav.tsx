@@ -11,6 +11,7 @@ export default function MobileNav() {
             <span className="text-sm font-semibold">Anywhere</span>
             <span className="text-xs">Any week . Add guest</span>
           </div>
+          
         </div>
 
         <SlidersHorizontal className="text-right" />
