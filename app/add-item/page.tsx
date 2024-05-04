@@ -13,7 +13,12 @@ export default function AddItem() {
       <div className="container mt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 place-items-center md:gap-2 gap-4">
           <div>
-            <h1 className="text-brand font-bold text-7xl">Airbnb it</h1>
+            <h1 className="text-green-800 font-bold text-7xl">
+              Found it or
+            </h1>
+            <h1 className="text-brand font-bold text-7xl">
+              Lost it
+            </h1>
             <h1 className="text-black font-semibold text-3xl mb-3">
               You could earn
             </h1>

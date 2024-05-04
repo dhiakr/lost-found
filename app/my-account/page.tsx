@@ -33,7 +33,7 @@ export default function UserDetailsPage() {
     };
 
     fetchUserData();
-  }, []);
+  }, [router, supabase.auth]);
 
   if (error === "User data not found") {
     return <p>User data not found. Please log in again.</p>;
