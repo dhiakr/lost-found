@@ -28,6 +28,11 @@ export default function NavMenu({ session }: { session: object | null }) {
                     Dashboard
                   </li>
                 </Link>
+                <Link href="/my-account">
+                  <li className="hover:bg-gray-200 rounded-md p-2 cursor-pointer">
+                    Profile
+                  </li>
+                </Link>
 
                 <SignOutBtn />
               </>
