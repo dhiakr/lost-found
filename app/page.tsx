@@ -27,7 +27,10 @@ export default async function Item({
     <div>
       <Navbar />
       <Toast />
-      <Categories />
+      <div className="flex justify-center">
+        
+        <Categories />
+      </div>
 
       {/* Load the item cards */}
       {items && items?.length > 0 && (

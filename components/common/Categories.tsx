@@ -1,8 +1,8 @@
 "use client";
-import { categories } from "@/config/categories";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { categories } from "@/config/categories";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Categories() {
   const router = useRouter();
@@ -29,10 +29,10 @@ export default function Categories() {
           key={item.name}
           onClick={() => handleClick(item.name)}
         >
-          <Image src={item.icon} width={25} height={25} alt={item.name} />
+          <FontAwesomeIcon icon={item.icon} size="lg" />{" "}
           <span
             className={`${
-              cat == item.name ? "inline-block border-b-4 border-brand" : ""
+              cat === item.name ? "inline-block border-b-4 border-brand" : ""
             } text-sm`}
           >
             {item.name}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { getImageUrl } from "@/lib/utils";
 import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { ItemsType } from "@/types";
 
 export default async function ShowItem({ params }: { params: { id: string } }) {
   const supabase = createServerComponentClient({ cookies });

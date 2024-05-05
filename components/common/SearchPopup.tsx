@@ -15,6 +15,7 @@ import { addDays, parse, format } from "date-fns";
 import { useRouter, useSearchParams } from "next/navigation";
 import MobileNav from "../base/MobileNav";
 import { differenceInDays } from "date-fns/esm";
+import { DateStateType, SearchParamsType } from "@/types";
 
 export default function SearchPopup({ session }: { session: any }) {
   const router = useRouter();
@@ -78,8 +79,8 @@ export default function SearchPopup({ session }: { session: any }) {
             <span className="text-sm">
               {searchParams.weeks != "" ? searchParams.weeks : "Any week"}
             </span>
-            <span>|</span>
-            <span className="text-muted-foreground text-sm">Add Guest</span>
+            
+        
             <span className="bg-brand text-white p-2 rounded-full pr-2">
               <Search width={14} height={14} />
             </span>

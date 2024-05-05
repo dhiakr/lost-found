@@ -103,13 +103,13 @@ console.log("payload");
           </span>
         </div>
         <div className="mt-5">
-          <Label htmlFor="countries">Countries</Label>
+          <Label htmlFor="countries">Gouvernorat</Label>
           <select
             className="outline-brand h-10 px-3 py-2 rounded-md w-full border"
             id="countries"
             {...register("country")}
           >
-            <option value=""> -- Select Counrties --</option>
+            <option value=""> -- Select Gouvernorat --</option>
             {countries.map((item) => (
               <option key={item.label} value={item.value}>
                 {item.label}
@@ -121,8 +121,8 @@ console.log("payload");
           </span>
         </div>
         <div className="mt-5">
-          <Label htmlFor="state">State</Label>
-          <Input placeholder="Enter state" id="state" {...register("state")} />
+          <Label htmlFor="state">Place</Label>
+          <Input placeholder="Enter Place" id="state" {...register("state")} />
           <span className="text-red-500 font-bold">
             {errors?.state?.message}
           </span>

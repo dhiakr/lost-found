@@ -7,8 +7,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function generateRandomNumber(): number {
-  const min = 2000;
-  const max = 20000;
+  const min = 1;
+  const max = 10;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 

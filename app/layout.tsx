@@ -5,8 +5,8 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Airbnb",
-  description: "Let's Airbnb it",
+  title: "Lost and Found TN",
+  description: "Let's Find it",
 };
 
 export const dynamic = "force-dynamic";

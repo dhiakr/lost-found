@@ -19,7 +19,7 @@ export default async function Navbar() {
         <SearchPopup session={session} />
         <div className="hidden md:flex justify-center items-center space-x-4">
           <Link href="/add-item" className="text-sm font-semibold">
-            Add you item
+            Add your item
           </Link>
           <NavMenu session={session.data?.session} />
         </div>

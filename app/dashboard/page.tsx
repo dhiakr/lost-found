@@ -31,7 +31,7 @@ export default async function Dashboard() {
       <div className="container mt-5">
         {items && items.length > 0 && (
           <Table>
-            <TableCaption>Your added Airbnb Items.</TableCaption>
+            <TableCaption>Your added lost/found Items.</TableCaption>
             <TableHeader>
               <TableRow>
                 <TableHead>Country</TableHead>

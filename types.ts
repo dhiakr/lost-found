@@ -1,14 +1,16 @@
-type CategoriesType = {
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+
+export type CategoriesType = {
   name: string;
-  icon: string;
+  icon: IconProp;
 };
 
-type CountriesType = {
+export type CountriesType = {
   value: string;
   label: string;
 };
 
-type ItemsType = {
+export type ItemsType = {
   id: any;
   status: any;
   title: any;
@@ -24,13 +26,13 @@ type ItemsType = {
   };
 };
 
-type DateStateType = {
+export type DateStateType = {
   startDate: Date;
   endDate: Date;
   key: string;
 };
 
-type SearchParamsType = {
+export type SearchParamsType = {
   country: string;
   weeks: string;
 };

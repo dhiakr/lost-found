@@ -10,7 +10,8 @@ export default function UserDetailsPage() {
     name: string;
     email: string;
     phoneNumber: string;
-  } | null>(null);
+  } | null>(null); 
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const router = useRouter();
 
@@ -26,9 +27,10 @@ export default function UserDetailsPage() {
           const { user_metadata, email } = user;
           const { name, phoneNumber } = user_metadata;
           setUserDetails({ email: email || "", name, phoneNumber });
+          setLoading(false);
         }
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        setLoading(false);
       }
     };
 
@@ -44,18 +46,35 @@ export default function UserDetailsPage() {
   }
 
   return (
-    <div>
+    <div className="bg-gray-100 min-h-screen">
       <StaticNavbar />
-      <h1>User Details</h1>
-      {userDetails ? (
-        <div>
-          <p>Name: {userDetails.name}</p>
-          <p>Email: {userDetails.email}</p>
-          <p>Phone Number: {userDetails.phoneNumber}</p>
-        </div>
-      ) : (
-        <p>Loading user details...</p>
-      )}
+      <div className="max-w-4xl mx-auto py-8">
+        <h1 className="text-3xl font-semibold mb-4">User Details</h1>
+        {loading ? (
+          <div className="text-center">
+            <p>Loading user details...</p>
+          </div>
+        ) : (
+          <div>
+            {userDetails && (
+              <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+                <p className="text-lg mb-2">
+                  <span className="font-semibold">Name:</span>{" "}
+                  {userDetails.name}
+                </p>
+                <p className="text-lg mb-2">
+                  <span className="font-semibold">Email:</span>{" "}
+                  {userDetails.email}
+                </p>
+                <p className="text-lg mb-2">
+                  <span className="font-semibold">Phone Number: </span>{"+216 "}
+                  {userDetails.phoneNumber}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

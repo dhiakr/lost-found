@@ -70,7 +70,7 @@ export default function LoginModal() {
             <AlertDialogDescription asChild>
               <div>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <h1 className="text-lg font-bold">Welcome to Airbnb</h1>
+                  <h1 className="text-lg font-bold">Welcome to Lost and Found TN</h1>
 
                   <div className="mt-5">
                     <Label htmlFor="email">Email</Label>
