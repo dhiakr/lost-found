@@ -1,39 +1,39 @@
 import { CountriesType } from "@/types";
 
 export const countries: Array<CountriesType> = [
-  { label: "Tunis", value: "Tunis" },
-  { label: "Ariana", value: "Ariana" },
+  { label: "tunis", value: "Tunis" },
+  { label: "ariana", value: "Ariana" },
 
-  { label: "Bèja", value: "Bèja" },
-  { label: "Ben Arous", value: "Ben Arous" },
-  { label: "Bizerte", value: "Bizerte" },
+  { label: "beja", value: "Beja" },
+  { label: "ben Arous", value: "Ben Arous" },
+  { label: "bizerte", value: "Bizerte" },
 
-  { label: "Gabès", value: "Gabès" },
-  { label: "Gafsa", value: "Gafsa" },
+  { label: "gabes", value: "Gabes" },
+  { label: "gafsa", value: "Gafsa" },
 
-  { label: "Jendouba", value: "Jendouba" },
+  { label: "jendouba", value: "Jendouba" },
 
-  { label: "Kairouan", value: "Kairouan" },
-  { label: "Kasserine", value: "Kasserine" },
-  { label: "Kébili", value: "Kébili" },
+  { label: "kairouan", value: "Kairouan" },
+  { label: "kasserine", value: "Kasserine" },
+  { label: "kébili", value: "Kébili" },
 
-  { label: "La Manouba", value: "La Manouba" },
-  { label: "Le Kef", value: "Le Kef" },
+  { label: "la Manouba", value: "La Manouba" },
+  { label: "le Kef", value: "Le Kef" },
 
-  { label: "Mahdia", value: "Mahdia" },
-  { label: "Medenine", value: "Medenine" },
-  { label: "Monastir", value: "Monastir" },
+  { label: "mahdia", value: "Mahdia" },
+  { label: "medenine", value: "Medenine" },
+  { label: "monastir", value: "Monastir" },
 
-  { label: "Nabeul", value: "Nabeul" },
+  { label: "nabeul", value: "Nabeul" },
 
-  { label: "Sfax", value: "Sfax" },
-  { label: "Sidi Bouzid", value: "Sidi Bouzid" },
-  { label: "Siliana", value: "Siliana" },
-  { label: "Sousse", value: "Sousse" },
+  { label: "qfax", value: "Sfax" },
+  { label: "qidi Bouzid", value: "Sidi Bouzid" },
+  { label: "qiliana", value: "Siliana" },
+  { label: "qousse", value: "Sousse" },
 
-  { label: "Tataouine", value: "Tataouine" },
-  { label: "Tozeur", value: "Tozeur" },
-  { label: "Tunis", value: "Tunis" },
+  { label: "tataouine", value: "Tataouine" },
+  { label: "tozeur", value: "Tozeur" },
+  { label: "tunis", value: "Tunis" },
 
-  { label: "Zaghouan", value: "Zaghouan" },
+  { label: "zaghouan", value: "Zaghouan" },
 ];

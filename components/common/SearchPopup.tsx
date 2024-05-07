@@ -25,6 +25,7 @@ export default function SearchPopup({ session }: { session: any }) {
   const [searchParams, setSearchParams] = useState<SearchParamsType>({
     country: "Anywhere",
     weeks: "",
+    city:"Anywhere"
   });
   const [date, setDate] = useState<Array<DateStateType>>([
     {
@@ -46,7 +47,7 @@ export default function SearchPopup({ session }: { session: any }) {
         country: params?.get("country") ? params?.get("country")! : "Anywhere",
       });
     }
-  }, [params]);
+  }, [params, searchParams]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -86,6 +87,7 @@ export default function SearchPopup({ session }: { session: any }) {
             </span>
           </div>
           <div onClick={() => setOpen(true)}>
+            
             <MobileNav />
           </div>
         </div>

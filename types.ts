@@ -35,4 +35,5 @@ export type DateStateType = {
 export type SearchParamsType = {
   country: string;
   weeks: string;
+  city: string;
 };
