@@ -15,10 +15,18 @@ export default function Categories() {
     }
   }, [params]);
 
-  const handleClick = (cat: string) => {
-    const fullUrl = new URL(window.location.href);
-    fullUrl.searchParams.set("category", cat);
-    router.replace(`/${fullUrl.search}`);
+  const handleClick = (clickedCat: string) => {
+    if (cat === clickedCat) {
+      const fullUrl = new URL(window.location.href);
+      fullUrl.searchParams.delete("category");
+      router.replace(`/${fullUrl.search}`);
+      setCat("");
+    } else {
+      const fullUrl = new URL(window.location.href);
+      fullUrl.searchParams.set("category", clickedCat);
+      router.replace(`/${fullUrl.search}`);
+      setCat(clickedCat);
+    }
   };
 
   return (

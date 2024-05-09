@@ -25,7 +25,7 @@ export default function SearchPopup({ session }: { session: any }) {
   const [searchParams, setSearchParams] = useState<SearchParamsType>({
     country: "Anywhere",
     weeks: "",
-    city:"Anywhere"
+    city: "Anywhere",
   });
   const [date, setDate] = useState<Array<DateStateType>>([
     {
@@ -40,14 +40,17 @@ export default function SearchPopup({ session }: { session: any }) {
       parse(params?.get("endDate")!, "dd-MM-y", new Date()),
       parse(params?.get("startDate")!, "dd-MM-y", new Date())
     );
-    if (difference) {
-      setSearchParams({
-        ...searchParams,
-        weeks: `${difference} days`,
-        country: params?.get("country") ? params?.get("country")! : "Anywhere",
-      });
-    }
-  }, [params, searchParams]);
+    const searchCountry = params?.get("country")
+      ? params?.get("country")!
+      : "Anywhere";
+    const searchWeeks = difference ? `${difference} days` : "";
+
+    setSearchParams({
+      country: searchCountry,
+      weeks: searchWeeks,
+      city: "Anywhere",
+    });
+  }, [params]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -61,9 +64,13 @@ export default function SearchPopup({ session }: { session: any }) {
     const startDate = format(date?.[0].startDate, "dd-MM-y");
     const endDate = format(date?.[0].endDate, "dd-MM-y");
 
-    router.replace(
-      `/?country=${search}&startDate=${startDate}&endDate=${endDate}`
-    );
+    if (!search) {
+      router.replace("/");
+    } else {
+      router.replace(
+        `/?country=${search.toLocaleLowerCase()}&startDate=${startDate}&endDate=${endDate}`
+      );
+    }
     setOpen(false);
   };
 
@@ -78,7 +85,7 @@ export default function SearchPopup({ session }: { session: any }) {
             <span className="pl-2 text-sm">{searchParams.country}</span>
             <span>|</span>
             <span className="text-sm">
-              {searchParams.weeks != "" ? searchParams.weeks : "Any week"}
+              {searchParams.weeks !== "" ? searchParams.weeks : "Any week"}
             </span>
             <span className="bg-brand text-white p-2 rounded-full pr-2">
               <Search width={14} height={14} />
