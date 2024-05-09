@@ -80,14 +80,11 @@ export default function SearchPopup({ session }: { session: any }) {
             <span className="text-sm">
               {searchParams.weeks != "" ? searchParams.weeks : "Any week"}
             </span>
-            
-        
             <span className="bg-brand text-white p-2 rounded-full pr-2">
               <Search width={14} height={14} />
             </span>
           </div>
           <div onClick={() => setOpen(true)}>
-            
             <MobileNav />
           </div>
         </div>

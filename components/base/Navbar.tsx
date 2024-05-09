@@ -13,12 +13,15 @@ export default async function Navbar() {
   return (
     <div>
       <nav className="justify-between items-center md:px-12 py-2 border-b-[1px] flex">
-        <div className="hidden md:block">
+        <div className=" md:block ">
           <BrandLogo />
         </div>
         <SearchPopup session={session} />
-        <div className="hidden md:flex justify-center items-center space-x-4">
-          <Link href="/add-item" className="text-sm font-semibold">
+        <div className=" md:flex justify-center items-center space-x-4 mr-5">
+          <Link
+            href="/add-item"
+            className="hidden md:flex text-sm font-semibold"
+          >
             Add your item
           </Link>
           <NavMenu session={session.data?.session} />
