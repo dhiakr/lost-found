@@ -2,6 +2,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
 import { DateRangePicker, DateRange } from "react-date-range";
+import { DateStateType } from "@/types";
 
 export default function DatePicker({
   state,

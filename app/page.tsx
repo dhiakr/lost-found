@@ -4,6 +4,8 @@ import Toast from "@/components/base/Toast";
 import ItemCard from "@/components/common/ItemCard";
 import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import "../public/service-worker";
+import Head from "next/head";
 
 export default async function Item({
   searchParams,
@@ -25,10 +27,13 @@ export default async function Item({
 
   return (
     <div>
+      <Head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#ffffff"></meta>
+      </Head>
       <Navbar />
       <Toast />
       <div className="flex justify-center">
-        
         <Categories />
       </div>
 
