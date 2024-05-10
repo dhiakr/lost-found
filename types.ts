@@ -21,6 +21,7 @@ export type ItemsType = {
   description: any;
   user_id: any;
   created_at: any;
+  name: any;
   users: {
     name: any;
   };

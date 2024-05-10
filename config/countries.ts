@@ -1,7 +1,6 @@
 import { CountriesType } from "@/types";
 
 export const countries: Array<CountriesType> = [
-  { label: "tunis", value: "Tunis" },
   { label: "ariana", value: "Ariana" },
 
   { label: "beja", value: "Beja" },

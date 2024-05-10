@@ -21,6 +21,19 @@ export default async function ShowItem({ params }: { params: { id: string } }) {
         {/* Title and Country details */}
         <div>
           <h1 className="text-2xl font-bold">{item?.title}</h1>
+          <h1
+            className="text-2xl font-bold"
+            style={{
+              color:
+                item?.status === "lost"
+                  ? "red"
+                  : item?.status === "found"
+                  ? "green"
+                  : "black",
+            }}
+          >
+            {item?.status}
+          </h1>
           <p>
             {item?.city} , {item?.state} ,{item?.country}
           </p>
@@ -31,11 +44,11 @@ export default async function ShowItem({ params }: { params: { id: string } }) {
           width={100}
           height={100}
           alt="item_img"
-          className="w-full rounded-lg h-[500px] object-cover object-center my-5"
+          className="w-full rounded-lg h-fit object-cover object-center my-5"
           unoptimized
         />
         <h1 className="text-2xl font-bold text-brand">
-          Hosted By {item?.users?.name}
+          Hosted By {item?.name}
         </h1>
 
         <h1 className="text-xl font-semibold">

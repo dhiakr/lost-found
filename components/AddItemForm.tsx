@@ -51,7 +51,6 @@ export default function AddItemForm() {
   }, [itemCategories, description, status, setValue]);
 
   const submit = async (payload: ItemSchemaType) => {
-
     setLoading(true);
     const user = await supabase.auth.getUser();
     const uniquePath = Date.now() + "_" + generateRandomNumber();
@@ -76,15 +75,16 @@ export default function AddItemForm() {
       description: payload.description,
       categories: itemCategories,
       image: imgData?.path,
+      name: user.data.user?.user_metadata.name,
     });
 
     if (itemErr) {
       toast.error(itemErr.message, { theme: "colored" });
       setLoading(false);
- 
+
       return;
     }
-console.log("payload");
+    console.log("payload");
     router.push("/dashboard?success=Item added successfully!");
   };
   return (
@@ -141,9 +141,9 @@ console.log("payload");
               type="radio"
               id="status-found"
               {...register("status")}
-              value="found"
-              checked={status === "found"}
-              onChange={() => setStatus("found")}
+              value="Found"
+              checked={status === "Found"}
+              onChange={() => setStatus("Found")}
               className="mr-2 appearance-none bg-gray-300 border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-green-600 checked:border-transparent focus:outline-none"
             />
             <label
@@ -158,9 +158,9 @@ console.log("payload");
               type="radio"
               id="status-lost"
               {...register("status")}
-              value="lost"
-              checked={status === "lost"}
-              onChange={() => setStatus("lost")}
+              value="Lost"
+              checked={status === "Lost"}
+              onChange={() => setStatus("Lost")}
               className="mr-2 appearance-none bg-gray-300 border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-brand checked:border-transparent focus:outline-none"
             />
             <label htmlFor="status-lost" className="text-sm cursor-pointer">
