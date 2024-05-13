@@ -27,6 +27,7 @@ export default function SignOutBtn() {
       className: "bg-green-400",
     });
     router.refresh();
+    router.replace("/");
   };
   return (
     <AlertDialog>
