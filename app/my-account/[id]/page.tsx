@@ -71,9 +71,9 @@ export default function UserDetailsPage() {
   }
 
   const userProfileUrl = params
-    ? `http://localhost:3000/my-account/${params.id}`
+    ? `${process.env.NEXT_PUBLIC_BASE_URL}/my-account/${params.id}`
     : "";
-
+    
   const handleDownload = () => {
     if (qrCodeRef.current) {
       html2canvas(qrCodeRef.current).then((canvas) => {
