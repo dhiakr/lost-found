@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 export default function UserDetailsPage() {
   const supabase = createClientComponentClient();
+  const [authUserId, setAuthUserId] = useState<string | null>(null);
   const [userDetails, setUserDetails] = useState<{
     id: string;
     name: string;
@@ -20,7 +21,17 @@ export default function UserDetailsPage() {
   const qrCodeRef = useRef(null);
   const router = useRouter();
   const params = useParams();
+
   useEffect(() => {
+    const fetchAuthUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        setAuthUserId(user.id);
+      }
+    };
+
     const fetchUserData = async () => {
       try {
         const userId = params.id;
@@ -42,10 +53,11 @@ export default function UserDetailsPage() {
         }
       } catch (error) {
         setError("Error fetching user data");
-      } 
+      }
     };
 
     if (params.id) {
+      fetchAuthUser();
       fetchUserData();
     }
   }, [params.id, router, supabase]);
@@ -73,58 +85,58 @@ export default function UserDetailsPage() {
     }
   };
 
- return (
-   <div className="bg-gray-100 min-h-screen">
-     <StaticNavbar />
-     <div className="max-w-4xl mx-auto py-8">
-       <h1 className="text-3xl font-semibold mb-4">User Details</h1>
-       <div className="flex flex-wrap justify-center">
-         <div className="w-full md:w-1/2 p-4">
-           {loading ? (
-             <div className="text-center">
-               <p>Loading user details...</p>
-             </div>
-           ) : (
-             <>
-               {userDetails && (
-                 <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-                   <p className="text-lg mb-2">
-                     <span className="font-semibold">Name:</span>{" "}
-                     {userDetails.name}
-                   </p>
-                   <p className="text-lg mb-2">
-                     <span className="font-semibold">Email:</span>{" "}
-                     {userDetails.email}
-                   </p>
-                   <p className="text-lg mb-2">
-                     <span className="font-semibold">Phone Number: </span>
-                     {"+216 "}
-                     {userDetails.phoneNumber}
-                   </p>
-                 </div>
-               )}
-               {error && <p>Error fetching user data: {error}</p>}
-             </>
-           )}
-         </div>
-         <div className="w-full md:w-1/2 p-4 flex justify-center items-center">
-           {userProfileUrl && (
-             <div className="text-center">
-               <p className="text-lg mb-2 font-semibold">User QR Code:</p>
-               <div ref={qrCodeRef}>
-                 <QRCode value={userProfileUrl} />
-               </div>
-               <button
-                 onClick={handleDownload}
-                 className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-               >
-                 Download QR Code
-               </button>
-             </div>
-           )}
-         </div>
-       </div>
-     </div>
-   </div>
- );
+  return (
+    <div className="bg-gray-100 min-h-screen">
+      <StaticNavbar />
+      <div className="max-w-4xl mx-auto py-8">
+        <h1 className="text-3xl font-semibold mb-4">User Details</h1>
+        <div className="flex flex-wrap justify-center">
+          <div className="w-full md:w-1/2 p-4">
+            {loading ? (
+              <div className="text-center">
+                <p>Loading user details...</p>
+              </div>
+            ) : (
+              <>
+                {userDetails && (
+                  <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <p className="text-lg mb-2">
+                      <span className="font-semibold">Name:</span>{" "}
+                      {userDetails.name}
+                    </p>
+                    <p className="text-lg mb-2">
+                      <span className="font-semibold">Email:</span>{" "}
+                      {userDetails.email}
+                    </p>
+                    <p className="text-lg mb-2">
+                      <span className="font-semibold">Phone Number: </span>
+                      {"+216 "}
+                      {userDetails.phoneNumber}
+                    </p>
+                  </div>
+                )}
+                {error && <p>Error fetching user data: {error}</p>}
+              </>
+            )}
+          </div>
+          <div className="w-full md:w-1/2 p-4 flex justify-center items-center">
+            {authUserId === params.id && userProfileUrl && (
+              <div className="text-center">
+                <p className="text-lg mb-2 font-semibold">User QR Code:</p>
+                <div ref={qrCodeRef}>
+                  <QRCode value={userProfileUrl} />
+                </div>
+                <button
+                  onClick={handleDownload}
+                  className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Download QR Code
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

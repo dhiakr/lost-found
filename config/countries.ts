@@ -25,10 +25,10 @@ export const countries: Array<CountriesType> = [
 
   { label: "nabeul", value: "Nabeul" },
 
-  { label: "qfax", value: "Sfax" },
-  { label: "qidi Bouzid", value: "Sidi Bouzid" },
-  { label: "qiliana", value: "Siliana" },
-  { label: "qousse", value: "Sousse" },
+  { label: "sfax", value: "Sfax" },
+  { label: "sidi Bouzid", value: "Sidi Bouzid" },
+  { label: "siliana", value: "Siliana" },
+  { label: "sousse", value: "Sousse" },
 
   { label: "tataouine", value: "Tataouine" },
   { label: "tozeur", value: "Tozeur" },
